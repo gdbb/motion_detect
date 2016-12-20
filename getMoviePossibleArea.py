@@ -34,11 +34,18 @@ def ImageToMatrix2(im):
     mx = scipy.misc.fromimage(im)
     return mx 
 
-root_path = "/Users/apple2/Tracking/PredictImages/"
+root_path = "./"
 
-cap = cv2.VideoCapture("test3.mp4")
+cap = cv2.VideoCapture("data/test.mp4")
 
 fgbg = cv2.BackgroundSubtractorMOG(500, 10, 0.2)
+
+#fgbg = cv2.createBackgroundSubtractorMOG2()
+
+#fgbg = cv2.createBackgroundSubtractorMOG2()
+#fgbg.setHistory(500)
+#fgbg.setNMixtures(10)
+#fgbg.setBackgroundRatio(0.2)
 
 fnprex = "getting_mp4_"
 
@@ -79,7 +86,7 @@ while (1):
         pfl.write(fp + " 0\n")  ##图片列表
 
         print im_resize
-        im_resize.save(fp)
+#        im_resize.save(fp)
         
         cv2.imshow('frame',ImageToMatrix2(im_resize))
 
