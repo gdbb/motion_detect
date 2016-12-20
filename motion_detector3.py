@@ -1,4 +1,11 @@
 # -*- coding=utf8 -*-
+
+'''
+#reference:
+#    histogram similarity caculation: 
+#       http://www.cnblogs.com/qq78292959/archive/2013/03/22/2976239.html
+'''
+
 import numpy as np
 import cv2
 import Image
