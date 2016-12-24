@@ -14,7 +14,7 @@ def product_weight():
 		n = size - 1 - index
 
 		circle_block_num += 8
-		value = 1000. / circle_num / circle_block_num
+		value = 1. / circle_num / circle_block_num
 
 		for i in range(size):
 			weight[m][i] = value
@@ -31,5 +31,5 @@ def product_num():
 			print i, j
 
 if __name__ == "__main__":
-	product_num()
-	#product_weight()
+	#product_num()
+	product_weight()
