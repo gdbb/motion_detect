@@ -68,6 +68,15 @@ def calc_similarity(li, ri):
     #rireturn hist_similar(li.histogram(), ri.histogram())
     return sum(hist_similar(l.histogram(), r.histogram()) for l, r in zip(split_image(li), split_image(ri))) / 16.0
 
+def temp(pic1, pic2, size):
+	pic1 = pic1.resize(size)#.convert('RGB')
+	pic2 = pic2.resize(size)#.convert('RGB')
+
+	pic1 = ImageToMatrix2(pic1)
+	pic2 = ImageToMatrix2(pic2)
+
+	print pic1.shape
+	print pic2.shape
 
 root_path = "./"
 
@@ -84,8 +93,8 @@ fgbg = cv2.BackgroundSubtractorMOG(500, 10, 0.2)
 
 fnprex = "getting_mp4_"
 
-predict_filelist = root_path + "predict_filelist.txt"
-pfl = open(predict_filelist,'w')
+#predict_filelist = root_path + "predict_filelist.txt"
+#pfl = open(predict_filelist,'w')
 
 
 x0 = 370
@@ -147,6 +156,8 @@ while (1):
         box2 = (x, y, x + w, y + h)
         pic2 = frame_temp.crop(box2)
 
+        temp(pic1, pic2, (16, 16))
+
         print calc_similarity(pic1, pic2) 
         if math.sqrt((cx - cx0)*(cx - cx0) + (cy - cy0)*(cy - cy0)) <= math.sqrt((x0 - cx0)*(x0 - cx0) + (y0 - cy0)*(y0 - cy0)) \
         and area >= area0 / 2 \
@@ -174,7 +185,7 @@ while (1):
         im_resize = cropImg.resize(re_size, Image.BILINEAR)
         fp = root_path + fnprex + '%s_%s.jpg' % (j, i)
         
-        pfl.write(fp + " 0\n")  ##图片列表
+        #pfl.write(fp + " 0\n")  ##图片列表
 
         #print im_resize
         #im_resize.save(fp)
@@ -205,7 +216,7 @@ while (1):
         break
 
 
-pfl.close()
+#pfl.close()
 
 cap.release()
 cv2.destroyAllWindows()
